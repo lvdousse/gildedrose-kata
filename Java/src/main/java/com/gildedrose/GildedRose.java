@@ -19,47 +19,45 @@ class GildedRose {
         if (item.isSulfuras()) {
             return;
         }
-        if (item.isAgedBrie()
-            || item.isBackstagePasses()) {
 
+        if (item.isAgedBrie()) {
             if (item.quality < 50) {
                 item.increaseQuality();
 
-                if (item.isBackstagePasses()) {
-                    if (item.sellIn < 11) {
-                        item.increaseQuality();
-                    }
-
-                    if (item.sellIn < 6) {
-                        item.increaseQuality();
-                    }
+            }
+            if (item.hasPassedSellByDate()) {
+                if (item.quality < 50) {
+                    item.increaseQuality();
                 }
             }
+        } else if (item.isBackstagePasses()) {
+            if (item.quality < 50) {
+                item.increaseQuality();
 
+                if (item.sellIn <= 10) {
+                    item.increaseQuality();
+                }
+
+                if (item.sellIn <= 5) {
+                    item.increaseQuality();
+                }
+                if (item.hasPassedSellByDate()) {
+                    item.quality = 0;
+                }
+            }
         } else {
             if (item.quality > 0) {
                 item.decreaseQuality();
+            }
+            if (item.hasPassedSellByDate()) {
+                if (item.quality > 0) {
+                    item.decreaseQuality();
+                }
             }
         }
 
         item.sellIn = item.sellIn - 1;
 
-        if (item.hasPassedSellByDate()) {
-
-            if (item.isAgedBrie()) {
-                if (item.quality < 50) {
-                    item.increaseQuality();
-                }
-            } else {
-                if (!item.isBackstagePasses()) {
-                    if (item.quality > 0) {
-                        item.decreaseQuality();
-                    }
-                } else {
-                    item.quality = 0;
-                }
-            }
-        }
         item.update(inputItem);
     }
 
