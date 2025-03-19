@@ -53,4 +53,8 @@ public class GildedRoseItem {
     public void decreaseQuality(int increment) {
         quality = Math.max(0, quality - increment);
     }
+
+    public void decreaseSellIn() {
+        sellIn--;
+    }
 }

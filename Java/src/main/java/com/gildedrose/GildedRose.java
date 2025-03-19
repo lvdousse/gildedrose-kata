@@ -27,17 +27,19 @@ class GildedRose {
                 item.increaseQuality();
             }
         } else if (item.isBackstagePasses()) {
-            item.increaseQuality();
-
-            if (item.sellIn <= 10) {
-                item.increaseQuality();
-            }
-
-            if (item.sellIn <= 5) {
-                item.increaseQuality();
-            }
             if (item.hasPassedSellByDate()) {
                 item.quality = 0;
+            } else {
+
+                item.increaseQuality();
+
+                if (item.sellIn <= 10) {
+                    item.increaseQuality();
+                }
+
+                if (item.sellIn <= 5) {
+                    item.increaseQuality();
+                }
             }
         } else {
             if (item.hasPassedSellByDate()) {
@@ -46,7 +48,7 @@ class GildedRose {
                 item.decreaseQuality();
         }
 
-        item.sellIn = item.sellIn - 1;
+        item.decreaseSellIn();
 
         item.update(inputItem);
     }
