@@ -9,11 +9,11 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            updateQualityForItem(item);
+            updateItem(item);
         }
     }
 
-    public void updateQualityForItem(Item inputItem) {
+    private void updateItem(Item inputItem) {
         GildedRoseItem item = new GildedRoseItem(inputItem);
 
         if (item.isSulfuras()) {
@@ -28,19 +28,15 @@ class GildedRose {
             }
         } else if (item.isBackstagePasses()) {
             if (item.hasPassedSellByDate()) {
-                item.quality = 0;
-            } else {
-
+                item.nullifyQuality();
+            } else if (item.hasSellInValueHigherThen(10)) {
                 item.increaseQuality();
-
-                if (item.sellIn <= 10) {
-                    item.increaseQuality();
-                }
-
-                if (item.sellIn <= 5) {
-                    item.increaseQuality();
-                }
+            } else if (item.hasSellInValueHigherThen(5)) {
+                item.increaseQuality(2);
+            } else {
+                item.increaseQuality(3);
             }
+
         } else {
             if (item.hasPassedSellByDate()) {
                 item.decreaseQuality(2);

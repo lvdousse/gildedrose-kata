@@ -2,11 +2,11 @@ package com.gildedrose;
 
 public class GildedRoseItem {
 
-    public String name;
+    private String name;
 
-    public int sellIn;
+    private int sellIn;
 
-    public int quality;
+    private int quality;
 
     public GildedRoseItem(Item item) {
         this.name = item.name;
@@ -54,7 +54,15 @@ public class GildedRoseItem {
         quality = Math.max(0, quality - increment);
     }
 
+    public void nullifyQuality() {
+        this.quality = 0;
+    }
+
     public void decreaseSellIn() {
         sellIn--;
+    }
+
+    public boolean hasSellInValueHigherThen(int nrOfDays) {
+        return sellIn > nrOfDays;
     }
 }
