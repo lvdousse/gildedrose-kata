@@ -3,12 +3,13 @@ package com.gildedrose;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GildedRoseTest {
 
     @Test
     void lower_both_values_for_every_item_at_end_of_each_day() {
-        Item[] items = new Item[] {
+        Item[] items = new Item[]{
             new Item("myItem1", 5, 5),
             new Item("myItem2", 8, 7)
         };
@@ -23,7 +24,7 @@ class GildedRoseTest {
 
     @Test
     void once_sell_by_date_has_passed_quality_degrades_twice_as_fast() {
-        Item[] items = new Item[] {
+        Item[] items = new Item[]{
             new Item("myItem", 0, 20)
         };
         GildedRose app = new GildedRose(items);
@@ -33,17 +34,22 @@ class GildedRoseTest {
 
     @Test
     void the_quality_of_an_item_is_never_negative() {
-        Item[] items = new Item[] {
-            new Item("myItem", 0, 0)
+        Item[] items = new Item[]{
+            new Item("myItem", 0, 0),
+            new Item("Aged Brie", 0, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0),
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(0, app.items[0].quality);
+
+        assertTrue(app.items[0].quality >= 0);
+        assertTrue(app.items[1].quality >= 0);
+        assertTrue(app.items[2].quality >= 0);
     }
 
     @Test
     void agedBrie_increases_in_quality_the_older_it_gets() {
-        Item[] items = new Item[] {
+        Item[] items = new Item[]{
             new Item("Aged Brie", 12, 20)
         };
         GildedRose app = new GildedRose(items);
@@ -53,7 +59,7 @@ class GildedRoseTest {
 
     @Test
     void the_quality_of_an_item_is_never_more_than_50() {
-        Item[] items = new Item[] {
+        Item[] items = new Item[]{
             new Item("Aged Brie", 12, 50)
         };
         GildedRose app = new GildedRose(items);
@@ -62,8 +68,8 @@ class GildedRoseTest {
     }
 
     @Test
-    void sulfuras_a_legendary_item_never_has_to_be_sold_or_decreases_in_quality () {
-        Item[] items = new Item[] {
+    void sulfuras_a_legendary_item_never_has_to_be_sold_or_decreases_in_quality() {
+        Item[] items = new Item[]{
             new Item("Sulfuras, Hand of Ragnaros", 10, 80)
         };
         GildedRose app = new GildedRose(items);
@@ -73,8 +79,8 @@ class GildedRoseTest {
     }
 
     @Test
-    void backstage_passes_increase_in_quality_as_sell_in_value_approaches () {
-        Item[] items = new Item[] {
+    void backstage_passes_increase_in_quality_as_sell_in_value_approaches() {
+        Item[] items = new Item[]{
             new Item("Backstage passes to a TAFKAL80ETC concert", 11, 25),
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 25),
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 25),

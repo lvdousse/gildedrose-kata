@@ -37,14 +37,20 @@ public class GildedRoseItem {
     }
 
     public void increaseQuality() {
-        quality++;
-    }
-
-    public void increaseQuality(int increment) {
-        quality += increment;
+        if (quality < 50)
+            quality++;
     }
 
     public void decreaseQuality() {
-        quality--;
+        if (quality > 0)
+            quality--;
+    }
+
+    public void increaseQuality(int increment) {
+        quality = Math.min(50, quality + increment);
+    }
+
+    public void decreaseQuality(int increment) {
+        quality = Math.max(0, quality - increment);
     }
 }

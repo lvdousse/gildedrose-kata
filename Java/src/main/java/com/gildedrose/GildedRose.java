@@ -21,39 +21,29 @@ class GildedRose {
         }
 
         if (item.isAgedBrie()) {
-            if (item.quality < 50) {
-                item.increaseQuality();
-
-            }
             if (item.hasPassedSellByDate()) {
-                if (item.quality < 50) {
-                    item.increaseQuality();
-                }
+                item.increaseQuality(2);
+            } else {
+                item.increaseQuality();
             }
         } else if (item.isBackstagePasses()) {
-            if (item.quality < 50) {
+            item.increaseQuality();
+
+            if (item.sellIn <= 10) {
                 item.increaseQuality();
-
-                if (item.sellIn <= 10) {
-                    item.increaseQuality();
-                }
-
-                if (item.sellIn <= 5) {
-                    item.increaseQuality();
-                }
-                if (item.hasPassedSellByDate()) {
-                    item.quality = 0;
-                }
             }
-        } else {
-            if (item.quality > 0) {
-                item.decreaseQuality();
+
+            if (item.sellIn <= 5) {
+                item.increaseQuality();
             }
             if (item.hasPassedSellByDate()) {
-                if (item.quality > 0) {
-                    item.decreaseQuality();
-                }
+                item.quality = 0;
             }
+        } else {
+            if (item.hasPassedSellByDate()) {
+                item.decreaseQuality(2);
+            } else
+                item.decreaseQuality();
         }
 
         item.sellIn = item.sellIn - 1;
