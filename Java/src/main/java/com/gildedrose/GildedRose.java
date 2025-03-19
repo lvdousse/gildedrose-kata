@@ -47,7 +47,7 @@ class GildedRose {
             item.sellIn = item.sellIn - 1;
         }
 
-        if (item.sellIn < 0) {
+        if (item.hasPassedSellByDate()) {
             if (!item.isAgedBrie()) {
                 if (!item.isBackstagePasses()) {
                     if (item.quality > 0) {

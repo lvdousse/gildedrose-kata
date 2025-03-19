@@ -13,7 +13,7 @@ public class GildedRoseItem {
         this.sellIn = item.sellIn;
         this.quality = item.quality;
     }
-    
+
     public boolean isAgedBrie() {
         return name.equals("Aged Brie");
     }
@@ -24,5 +24,9 @@ public class GildedRoseItem {
 
     public boolean isSulfuras() {
         return name.equals("Sulfuras, Hand of Ragnaros");
+    }
+
+    public boolean hasPassedSellByDate() {
+        return sellIn < 0;
     }
 }
