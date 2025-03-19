@@ -1,21 +1,20 @@
 package com.gildedrose;
 
 class GildedRose {
-    GildedRoseItem[] items;
+    Item[] items;
 
     public GildedRose(Item[] items) {
-        this.items = new GildedRoseItem[items.length];
-        for (int i = 0; i < items.length; i++)
-            this.items[i] = new GildedRoseItem((items[i]));
+        this.items = items;
     }
 
     public void updateQuality() {
-        for (GildedRoseItem item : items) {
+        for (Item item : items) {
             updateQualityForItem(item);
         }
     }
 
-    public void updateQualityForItem(GildedRoseItem item) {
+    public void updateQualityForItem(Item inputItem) {
+        GildedRoseItem item = new GildedRoseItem(inputItem);
         if (item.isAgedBrie()
             || item.isBackstagePasses()) {
 
@@ -69,5 +68,7 @@ class GildedRose {
             }
 
         }
+        item.update(inputItem);
     }
+
 }

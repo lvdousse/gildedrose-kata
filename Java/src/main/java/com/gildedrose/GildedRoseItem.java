@@ -14,6 +14,12 @@ public class GildedRoseItem {
         this.quality = item.quality;
     }
 
+    public void update(Item item) {
+        item.name = this.name;
+        item.sellIn = this.sellIn;
+        item.quality = this.quality;
+    }
+
     public boolean isAgedBrie() {
         return name.equals("Aged Brie");
     }
