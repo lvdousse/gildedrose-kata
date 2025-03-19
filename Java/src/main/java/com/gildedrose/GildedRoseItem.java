@@ -29,4 +29,12 @@ public class GildedRoseItem {
     public boolean hasPassedSellByDate() {
         return sellIn < 0;
     }
+
+    public void increaseQuality() {
+        quality++;
+    }
+
+    public void decreaseQuality() {
+        quality--;
+    }
 }
