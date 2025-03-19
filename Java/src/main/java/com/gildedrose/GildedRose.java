@@ -24,8 +24,10 @@ class GildedRose {
             updateQualityForAgedBrie(item);
         } else if (item.isBackstagePasses()) {
             updateQualityForBackstagePasses(item);
+        } else if (item.isConjured()) {
+            updateQualityForConjured(item);
         } else {
-            updateQualityForItem(item);
+            updateQualityForNormalItems(item);
         }
 
         item.decreaseSellIn();
@@ -33,7 +35,14 @@ class GildedRose {
         item.update(inputItem);
     }
 
-    private static void updateQualityForItem(GildedRoseItem item) {
+    private static void updateQualityForConjured(GildedRoseItem item) {
+        if (item.hasPassedSellByDate()) {
+            item.decreaseQuality(4);
+        } else
+            item.decreaseQuality(2);
+    }
+
+    private static void updateQualityForNormalItems(GildedRoseItem item) {
         if (item.hasPassedSellByDate()) {
             item.decreaseQuality(2);
         } else

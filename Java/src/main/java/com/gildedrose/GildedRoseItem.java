@@ -65,4 +65,8 @@ public class GildedRoseItem {
     public boolean hasSellInValueHigherThen(int nrOfDays) {
         return sellIn > nrOfDays;
     }
+
+    public boolean isConjured() {
+        return name.equals("Conjured Mana Cake");
+    }
 }
