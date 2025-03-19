@@ -21,32 +21,43 @@ class GildedRose {
         }
 
         if (item.isAgedBrie()) {
-            if (item.hasPassedSellByDate()) {
-                item.increaseQuality(2);
-            } else {
-                item.increaseQuality();
-            }
+            updateQualityForAgedBrie(item);
         } else if (item.isBackstagePasses()) {
-            if (item.hasPassedSellByDate()) {
-                item.nullifyQuality();
-            } else if (item.hasSellInValueHigherThen(10)) {
-                item.increaseQuality();
-            } else if (item.hasSellInValueHigherThen(5)) {
-                item.increaseQuality(2);
-            } else {
-                item.increaseQuality(3);
-            }
-
+            updateQualityForBackstagePasses(item);
         } else {
-            if (item.hasPassedSellByDate()) {
-                item.decreaseQuality(2);
-            } else
-                item.decreaseQuality();
+            updateQualityForItem(item);
         }
 
         item.decreaseSellIn();
 
         item.update(inputItem);
+    }
+
+    private static void updateQualityForItem(GildedRoseItem item) {
+        if (item.hasPassedSellByDate()) {
+            item.decreaseQuality(2);
+        } else
+            item.decreaseQuality();
+    }
+
+    private static void updateQualityForBackstagePasses(GildedRoseItem item) {
+        if (item.hasPassedSellByDate()) {
+            item.nullifyQuality();
+        } else if (item.hasSellInValueHigherThen(10)) {
+            item.increaseQuality();
+        } else if (item.hasSellInValueHigherThen(5)) {
+            item.increaseQuality(2);
+        } else {
+            item.increaseQuality(3);
+        }
+    }
+
+    private static void updateQualityForAgedBrie(GildedRoseItem item) {
+        if (item.hasPassedSellByDate()) {
+            item.increaseQuality(2);
+        } else {
+            item.increaseQuality();
+        }
     }
 
 }
