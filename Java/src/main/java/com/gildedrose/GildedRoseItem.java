@@ -2,6 +2,11 @@ package com.gildedrose;
 
 public class GildedRoseItem {
 
+    public static final String CONJURED_MANA_CAKE = "Conjured Mana Cake";
+    public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
+    public static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String AGED_BRIE = "Aged Brie";
+    
     private String name;
 
     private int sellIn;
@@ -21,15 +26,19 @@ public class GildedRoseItem {
     }
 
     public boolean isAgedBrie() {
-        return name.equals("Aged Brie");
+        return AGED_BRIE.equals(name);
     }
 
     public boolean isBackstagePasses() {
-        return name.equals("Backstage passes to a TAFKAL80ETC concert");
+        return BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT.equals(name);
     }
 
     public boolean isSulfuras() {
-        return name.equals("Sulfuras, Hand of Ragnaros");
+        return SULFURAS_HAND_OF_RAGNAROS.equals(name);
+    }
+
+    public boolean isConjured() {
+        return CONJURED_MANA_CAKE.equals(name);
     }
 
     public boolean hasPassedSellByDate() {
@@ -64,9 +73,5 @@ public class GildedRoseItem {
 
     public boolean hasSellInValueHigherThen(int nrOfDays) {
         return sellIn > nrOfDays;
-    }
-
-    public boolean isConjured() {
-        return name.equals("Conjured Mana Cake");
     }
 }
