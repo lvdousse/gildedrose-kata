@@ -1,19 +1,21 @@
 package com.gildedrose;
 
 class GildedRose {
-    Item[] items;
+    GildedRoseItem[] items;
 
     public GildedRose(Item[] items) {
-        this.items = items;
+        this.items = new GildedRoseItem[items.length];
+        for (int i = 0; i < items.length; i++)
+            this.items[i] = new GildedRoseItem((items[i]));
     }
 
     public void updateQuality() {
-        for (Item item : items) {
+        for (GildedRoseItem item : items) {
             updateQualityForItem(item);
         }
     }
 
-    public void updateQualityForItem(Item item) {
+    public void updateQualityForItem(GildedRoseItem item) {
         if (!isAgedBrie(item)
             && !isBackstagePasses(item)) {
             if (item.quality > 0) {
@@ -64,15 +66,15 @@ class GildedRose {
         }
     }
 
-    private boolean isAgedBrie(Item item) {
+    private boolean isAgedBrie(GildedRoseItem item) {
         return item.name.equals("Aged Brie");
     }
 
-    private boolean isBackstagePasses(Item item) {
+    private boolean isBackstagePasses(GildedRoseItem item) {
         return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
     }
 
-    private boolean isSulfuras(Item item) {
+    private boolean isSulfuras(GildedRoseItem item) {
         return item.name.equals("Sulfuras, Hand of Ragnaros");
     }
 }
