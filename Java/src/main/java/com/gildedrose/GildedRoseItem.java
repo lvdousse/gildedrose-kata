@@ -40,6 +40,10 @@ public class GildedRoseItem {
         quality++;
     }
 
+    public void increaseQuality(int increment) {
+        quality += increment;
+    }
+
     public void decreaseQuality() {
         quality--;
     }
