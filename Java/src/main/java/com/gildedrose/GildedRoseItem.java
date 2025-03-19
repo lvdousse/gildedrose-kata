@@ -13,4 +13,16 @@ public class GildedRoseItem {
         this.sellIn = item.sellIn;
         this.quality = item.quality;
     }
+    
+    public boolean isAgedBrie() {
+        return name.equals("Aged Brie");
+    }
+
+    public boolean isBackstagePasses() {
+        return name.equals("Backstage passes to a TAFKAL80ETC concert");
+    }
+
+    public boolean isSulfuras() {
+        return name.equals("Sulfuras, Hand of Ragnaros");
+    }
 }
